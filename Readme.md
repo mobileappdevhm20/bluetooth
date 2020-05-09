@@ -13,13 +13,16 @@ https://www.youtube.com/watch?v=jzxZUJmOu3o
 
 Folie 1:
 Problem mit Kabel
+
 Folie 2:
 Lösung wireless
+
 Folie3
 8 Geräte
 2.4 ghz
 Folie4: 
 harald bluetooth 
+
 folie 5 
 live programming
 permissions: android manifest. uses Bluetooth
