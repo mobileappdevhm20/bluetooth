@@ -9,3 +9,20 @@
 Präsentatition: https://1drv.ms/p/s!AhncPad3R28fmP5yfWNLoO2TMXua0g?e=TAz7i9
 
 https://www.youtube.com/watch?v=jzxZUJmOu3o
+
+
+Folie 1:
+Problem mit Kabel
+Folie 2:
+Lösung wireless
+Folie3
+8 Geräte
+2.4 ghz
+Folie4: 
+harald bluetooth 
+folie 5 
+live programming
+permissions: android manifest. uses Bluetooth
+find device, paring 
+security
+austausch daten
