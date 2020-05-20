@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 class MainActivity : AppCompatActivity() {
-
+    lateinit var bluetoothAdapter: BluetoothAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
 
         val rollButton: Button = findViewById(R.id.button5)
@@ -65,6 +65,17 @@ class MainActivity : AppCompatActivity() {
             startActivity(discoverableIntent)
         }
 
+        val rollButton60: Button = findViewById(R.id.button)
+        rollButton60.setOnClickListener {
+            Toast.makeText(this, "bframgment", Toast.LENGTH_SHORT).show()
+            //s  val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
+
+
+
+
+
+        }
+
 
         var pairedDevices1: MutableList<String> = ArrayList()
         var listView: ListView = findViewById(R.id.listView)
@@ -100,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                 bluetoothAdapter.startDiscovery()
             }
         }
+
     }
 
     // Create a BroadcastReceiver for ACTION_FOUND.
@@ -115,9 +127,26 @@ class MainActivity : AppCompatActivity() {
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
                     val deviceName = device.name
                     val deviceHardwareAddress = device.address // MAC address
+                    val text: TextView = findViewById(R.id.textView)
 
+                    text.text = "deviceName"
                 }
             }
+        }
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        if (bluetoothAdapter == null) {
+            return
+        }
+        // If BT is not on, request that it be enabled.
+        // setupChat() will then be called during onActivityResult
+        if (!bluetoothAdapter.isEnabled()) {
+            val enableIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableIntent, 10)
+            // Otherwise, setup the chat session
         }
     }
 
@@ -133,16 +162,16 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         val text: TextView = findViewById(R.id.label)
         when (requestCode) {
-        10-> {
-            if(resultCode==  RESULT_OK){
-                text.text= "on"
-            }else{
-                text.text="off"
+            10 -> {
+                if (resultCode == RESULT_OK) {
+                    text.text = "on"
+                } else {
+                    text.text = "off"
+                }
             }
-        }
 
         }
 
 
-  }
+    }
 }
