@@ -71,6 +71,12 @@ class MainActivity : AppCompatActivity() {
             //s  val ft: FragmentTransaction = supportFragmentManager.beginTransaction()
 
 
+            // Launch the DeviceListActivity to see devices and do scan
+            val serverIntent = Intent(this, DeviceListActivity::class.java)
+            startActivityForResult(
+                serverIntent,
+11
+            )
 
 
 
@@ -168,6 +174,14 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     text.text = "off"
                 }
+            }
+            11->{
+
+                // Get the device MAC address
+                val extras = data!!.extras ?: return
+                val address =
+                    extras.getString("device_address")
+                Toast.makeText(this, "button clicked ${address}", Toast.LENGTH_SHORT).show()
             }
 
         }
