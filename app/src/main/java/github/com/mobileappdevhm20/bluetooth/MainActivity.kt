@@ -224,10 +224,12 @@ class MainActivity : AppCompatActivity() {
             // Otherwise, setup the chat session
         }
     }
+
     override fun onResume() {
         super.onResume()
-        var    BluetoothService = MyBluetoothService(mHandler)
+        var BluetoothService = MyBluetoothService(mHandler)
     }
+
     override fun onDestroy() {
         super.onDestroy()
 
@@ -260,34 +262,37 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    private fun abc(a :String){
-        Log.i("Me1:",  "hjkhjh  $a")
+
+    private fun abc(a: String) {
+        Log.i("Me1:", "hjkhjh  $a")
 
         val text: TextView = findViewById(R.id.label)
 
-                    text.text = "$a"
-a.substring(0,10)
-        Toast.makeText(this,"dfsa ${a.substring(0,10)}",Toast.LENGTH_SHORT)
+        text.text = "$a"
+        a.substring(0, 10)
+        Toast.makeText(this, "dfsa ${a.substring(0, 10)}", Toast.LENGTH_SHORT)
 
     }
 
     private val mHandler = object : Handler() {
-         val MESSAGE_READ: Int = 0
-         val MESSAGE_WRITE: Int = 1
-         val MESSAGE_TOAST: Int = 2
+        val MESSAGE_READ: Int = 0
+        val MESSAGE_WRITE: Int = 1
+        val MESSAGE_TOAST: Int = 2
         override fun handleMessage(msg: Message?) {
             Log.i("handler", "handle message $msg")
-            when (msg?.what){
-                MESSAGE_READ ->{
+            when (msg?.what) {
+                MESSAGE_READ -> {
                     val writeBuf = msg.obj as ByteArray
                     // construct a string from the buffer
                     // construct a string from the buffer
                     val writeMessage = String(writeBuf)
-                   Log.i("Me:",  "hjkhjh  $writeMessage")
+                    Log.i("Me:", "hjkhjh  $writeMessage")
                     abc(writeMessage)
                 }
-                MESSAGE_WRITE->{}
-                MESSAGE_TOAST->{}
+                MESSAGE_WRITE -> {
+                }
+                MESSAGE_TOAST -> {
+                }
             }
         }
     }
