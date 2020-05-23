@@ -33,7 +33,7 @@ class MyBluetoothService(
             "hhh",
             "connected, Socket Type:aaaaaaa"
         )
-        thr.run()
+        thr.start()
 
     }
 
@@ -46,7 +46,7 @@ class MyBluetoothService(
         // Start the thread to manage the connection and perform transmissions
         if (socket != null) {
             var a = ConnectedThread(socket)
-            a.run()
+            a.start()
         }
 
         /*

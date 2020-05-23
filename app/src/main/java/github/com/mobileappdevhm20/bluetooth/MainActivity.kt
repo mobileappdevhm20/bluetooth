@@ -1,5 +1,6 @@
 package github.com.mobileappdevhm20.bluetooth
 
+import android.app.PendingIntent.getActivity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import android.content.BroadcastReceiver
@@ -259,6 +260,16 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+    private fun abc(a :String){
+        Log.i("Me1:",  "hjkhjh  $a")
+
+        val text: TextView = findViewById(R.id.label)
+
+                    text.text = "$a"
+a.substring(0,10)
+        Toast.makeText(this,"dfsa ${a.substring(0,10)}",Toast.LENGTH_SHORT)
+
+    }
 
     private val mHandler = object : Handler() {
          val MESSAGE_READ: Int = 0
@@ -273,6 +284,7 @@ class MainActivity : AppCompatActivity() {
                     // construct a string from the buffer
                     val writeMessage = String(writeBuf)
                    Log.i("Me:",  "hjkhjh  $writeMessage")
+                    abc(writeMessage)
                 }
                 MESSAGE_WRITE->{}
                 MESSAGE_TOAST->{}
