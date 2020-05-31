@@ -1,4 +1,8 @@
 
-mkotlin:S1192<"PDefine a constant instead of duplicating this literal "button discover" 3 times.(Æ¢ö×þÿÿÿÿ
-Gkotlin:S1481z"/Remove this unused "deviceName" local variable.(èÅ¿ð
-Rkotlin:S1481{":Remove this unused "deviceHardwareAddress" local variable.(½Å›ƒ
+mkotlin:S1192@"PDefine a constant instead of duplicating this literal "button discover" 3 times.(Æ¢ö×þÿÿÿÿ
+Hkotlin:S1481Ë"/Remove this unused "deviceName" local variable.(èÅ¿ð
+Hkotlin:S108¦")Either remove or fill this block of code.(ö¯¨—8ý•ñ‡¤.
+pkotlin:S117æ"RRename this local variable to match the regular expression "^[_a-z][a-zA-Z0-9]*$".(‚Õ’8ùŠò†¤.
+Tkotlin:S1481æ"5Remove this unused "BluetoothService" local variable.(‚Õ’8Óó™‡¤.
+Mkotlin:S108¤")Either remove or fill this block of code.(ùé¬šÿÿÿÿÿ8ý•ñ‡¤.
+Skotlin:S1481Ì":Remove this unused "deviceHardwareAddress" local variable.(½Å›ƒ
