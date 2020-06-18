@@ -26,43 +26,27 @@ class MyBluetoothService(
 ) {
 
     var bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-    var thr: AcceptThread = AcceptThread()
+    var acceptThread: AcceptThread = AcceptThread()
+    private val TAG = "MY_APP_DEBUG_TAG"
 
     init {
-        Log.i(
-            "hhh",
-            "connected, Socket Type:aaaaaaa"
-        )
-        thr.start()
+        acceptThread.start()
 
     }
-
+//called if the connection procedure was successful
     @Synchronized
     fun manageMyConnectedSocket(
         socket: BluetoothSocket?
     ) {
-
-
         // Start the thread to manage the connection and perform transmissions
         if (socket != null) {
-            var a = ConnectedThread(socket)
-            a.start()
+            var connectedThread = ConnectedThread(socket)
+            connectedThread.start()
         }
 
-        /*
-          mConnectedThread = ConnectedThread(socket!!, socketType)
-          mConnectedThread.start()
-          while (true) {
-
-              Log.d(
-                  "hhh",
-                  "connected, Socket Type:$socket"
-              )
-          }
-  */
     }
 
-
+//Thread Class responsible for accepting bluetooth connections
     inner class AcceptThread : Thread() {
         private val NAME = "BluetoothChatSecure"
 
@@ -79,7 +63,7 @@ class MyBluetoothService(
                 val socket: BluetoothSocket? = try {
                     mmServerSocket?.accept()
                 } catch (e: IOException) {
-                    Log.e("aaa", "Socket's accept() method failed", e)
+                    Log.e("accept thread fails", "Socket's accept() method failed", e)
                     shouldLoop = false
                     null
                 }
@@ -96,14 +80,13 @@ class MyBluetoothService(
             try {
                 mmServerSocket?.close()
             } catch (e: IOException) {
-                Log.e("aaa", "Could not close the connect socket", e)
+                Log.e("error cancel accept thread", "Could not close the connect socket", e)
             }
         }
     }
 
-    private val TAG = "MY_APP_DEBUG_TAG"
 
-
+//Thread responsible for the  communication from bluetooth. reading writing
     private inner class ConnectedThread(private val mmSocket: BluetoothSocket) : Thread() {
 
         private val mmInStream: InputStream = mmSocket.inputStream
@@ -111,10 +94,7 @@ class MyBluetoothService(
         private val mmBuffer: ByteArray = ByteArray(1024) // mmBuffer store for the stream
 
         override fun run() {
-            Log.i(
-                "hhhaaaa",
-                "connected, Socketgggggggggggggggggggggggg"
-            )
+
             var numBytes: Int // bytes returned from read()
 
             // Keep listening to the InputStream until an exception occurs.
@@ -126,10 +106,7 @@ class MyBluetoothService(
                     Log.d(TAG, "Input stream was disconnected", e)
                     break
                 }
-                Log.i(
-                    "hhhaaaa",
-                    "connected, Socketggggggggggggg $numBytes"
-                )
+                write("hello World".toByteArray())
                 // Send the obtained bytes to the UI activity.
                 val readMsg = handler.obtainMessage(
                     MESSAGE_READ, numBytes, -1,

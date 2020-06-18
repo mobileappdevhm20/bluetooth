@@ -90,8 +90,7 @@ class DeviceListActivity : AppCompatActivity() {
 
 
         // Get a set of currently paired devices
-        // val pairedDevices = mBtAdapter.getBondedDevices()
-        //var pairedDevices: Set<BluetoothDevice>? = emptySet()
+
         val pairedDevices = mBtAdapter?.bondedDevices
 
         // If there are paired devices, add each one to the ArrayAdapter

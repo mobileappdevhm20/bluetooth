@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
         var BluetoothService = MyBluetoothService(mHandler)
     }
 
-
+// Handles Return Values from Intents
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val text: TextView = findViewById(R.id.label)
@@ -113,17 +113,17 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun abc(a: String) {
-        Log.i("Me1:", "hjkhjh  $a")
+    private fun changeTextfield(m: String) {
+        Log.i("changeTextfield", "Message  $m")
 
         val text: TextView = findViewById(R.id.label1)
 
-        text.text = "$a"
-        a.substring(0, 10)
-        Toast.makeText(this, "dfsa ${a.substring(0, 10)}", Toast.LENGTH_SHORT)
+        text.text = "$m"
+        m.substring(0, 10)
+        Toast.makeText(this, "changeTextfield ${m.substring(0, 10)}", Toast.LENGTH_SHORT)
 
     }
-
+//Different handlers called from the bluetooth -Thread when receiving or sending messages
     private val mHandler = object : Handler() {
         val MESSAGE_READ: Int = 0
         val MESSAGE_WRITE: Int = 1
@@ -136,8 +136,8 @@ class MainActivity : AppCompatActivity() {
                     // construct a string from the buffer
                     // construct a string from the buffer
                     val writeMessage = String(writeBuf)
-                    Log.i("Me:", "hjkhjh  $writeMessage")
-                    abc(writeMessage)
+                    Log.i("handler", "receive Message  $writeMessage")
+                    changeTextfield(writeMessage)
                 }
                 MESSAGE_WRITE -> {
                 }
